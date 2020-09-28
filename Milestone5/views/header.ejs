@@ -1,0 +1,16 @@
+<nav id="topheader" class="navbar navbar-inverse branding">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand branding-text" href="/index"><img class="img-responsive" src="/assets/images/newlogo.jpg" alt="LOGO" width="230"></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/newConnection">Start a new connection</a></li>
+            <%if (test.userData) {%>
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            <%} else { %>
+            <li><a href="/login"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <%}%>
+        </ul>
+    </div>
+</nav>

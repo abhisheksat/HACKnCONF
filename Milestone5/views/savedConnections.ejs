@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8">
+		<title>Saved Connections | HACK n CONF</title>
+		<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+		<script src="/assets/js/jquery-3.4.1.min.js"></script>
+		<script src="/assets/js/bootstrap.min.js"></script>
+		<!--[if lt IE 9]
+			<script src="./js/browser-ie.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+		<header>
+				<%- include('header.ejs') %>
+		</header>
+		<%- include('navigation.ejs') %>
+		<main class="container col-md-12">
+				<section>
+						<br/>
+						<header class="row">
+								<div class="col-md-1"></div>
+								<div class="col-md-4 well">
+										<h4><%- test.userData.firstName %>'s Connections</h4>
+								</div>
+								<div class="col-md-7"></div>
+						</header>
+						<article class="row">
+								<div class="col-md-1"></div>
+								<div class="col-md-10 well">
+										<header>
+												<h5>Here you can view, update and delete your saved connections</h5>
+										</header>
+										<br/>
+										<table class="table table-bordered table-responsive tabu">
+												<%if (savedConnectionsData.length > 0) {%>
+														<thead>
+																<tr>
+																		<th>Connection</th>
+																		<th>Category</th>
+																		<th>Going?</th>
+																		<th></th>
+																</tr>
+														</thead>
+														<%savedConnectionsData.forEach(function (savedConnection) {%>
+														<tbody>
+																<tr>
+																		<td><%- savedConnection.connectionName%></td>
+																		<td><%- savedConnection.connectionTopic%></td>
+																		<td>
+																			<%allConnections.forEach(function (connection) {%>
+																				<%if (connection.connectionID == savedConnection.connectionID) {%>
+																					<%if (connection.status == 'inactive') {%>
+																						N/A - Event Deleted by Host
+																					<%} else {%>
+																						<%- savedConnection.going%>
+																					<%}%>
+																				<%}%>
+																			<%})%>
+																		</td>
+																		<td class="text-center row">
+
+																				<%allConnections.forEach(function (connection) {%>
+																					<%if (connection.connectionID == savedConnection.connectionID) {%>
+																						<%if (connection.status == 'inactive') {%>
+																							The host has marked the event as inactive
+																						<%} else {%>
+																							<div class="col-md-6">
+																									<form action="/connection/<%-savedConnection.connectionID%>">
+																											<button type="submit" class="btn btn-info">Update</button>
+																									</form>
+																							</div>
+																							<div class="col-md-6">
+																									<form action="/delete" method="POST">
+																											<input type="hidden" name="rsvpdelete" value="delete">
+																											<input type="hidden" name="connId" value="<%-savedConnection.connectionID%>">
+																											<button type="submit" class="btn btn-info">Delete</button>
+																									</form>
+																							</div>
+																						<%}%>
+																					<%}%>
+																				<%})%>
+																		</td>
+																</tr>
+														</tbody>
+														<%});%>
+												<%} else {%>
+												<thead>
+														<tr>
+																<th>No Saved Connections Data to Display</th>
+														</tr>
+												</thead>
+												<%}%>
+										</table>
+								</div>
+						</article>
+
+						<article class="row">
+								<div class="col-md-1"></div>
+								<div class="col-md-10 well">
+										<header>
+												<h5>Here you can view, update and delete your created connections</h5>
+										</header>
+										<br/>
+										<table class="table table-bordered table-responsive tabu">
+												<%if (createdConnections.length > 0) {%>
+														<thead>
+																<tr>
+																		<th>Connection</th>
+																		<th>Category</th>
+																		<th>Going?</th>
+																		<th></th>
+																</tr>
+														</thead>
+														<%createdConnections.forEach(function (createdConnection) {%>
+														<tbody>
+																<tr>
+																		<td><%- createdConnection.connectionName%></td>
+																		<td><%- createdConnection.connectionTopic%></td>
+																		<td><%- createdConnection.going%></td>
+																		<td class="text-center row">
+																				<div class="col-md-6">
+																						<form action="/connection/<%-createdConnection.connectionID%>">
+																								<button type="submit" class="btn btn-info">Update</button>
+																						</form>
+																				</div>
+																				<div class="col-md-6">
+																						<form action="/rsvp" method="POST">
+																								<input type="hidden" name="rsvpaction" value="RSVP">
+																								<input type="hidden" name="rsvpvalue" value="No">
+																								<input type="hidden" name="connId" value="<%-createdConnection.connectionID%>">
+																								<button type="submit" class="btn btn-info">Delete</button>
+																						</form>
+																				</div>
+																		</td>
+																</tr>
+														</tbody>
+														<%});%>
+												<%} else {%>
+												<thead>
+														<tr>
+																<th>No Created Connections Data to Display</th>
+														</tr>
+												</thead>
+												<%}%>
+										</table>
+								</div>
+						</article>
+				</section>
+		</main>
+
+		<footer>
+				<%- include('footer.ejs') %>
+		</footer>
+</body>
+</html>

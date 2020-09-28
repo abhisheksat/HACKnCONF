@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Login | HACK n CONF</title>
+	<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+	<script src="/assets/js/jquery-3.4.1.min.js"></script>
+	<script src="/assets/js/bootstrap.min.js"></script>
+	<!--[if lt IE 9]
+		<script src="./js/browser-ie.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		<header>
+			<%- include('header.ejs') %>
+		</header>
+		<%- include('navigation.ejs') %>
+		<main class="col-md-12">
+			<section>
+				<br/>
+				<div class="col-md-1"></div>
+				<article class="col-md-6 well">
+					<header>
+						<h2>Login to HACK n CONF</h2>
+					</header>
+					<form class="form-horizontal" action="login" method="POST">
+						<div class="col-md-2"></div>
+						<div class="form-group">
+							<label class="control-label errorMsg"><%-errorMsg%></label>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="email">User Id:</label>
+							<div class="col-sm-9">
+								<%if(fieldErrors) {%>
+									<input type="text" class="form-control" id="email" placeholder="Enter userId" name="email">
+									<%fieldErrors.forEach(function (error) { %>
+										<%if (error.param == 'email') {%>
+											<label class="errorMsg"><%- error.msg %></label><br/>
+										<%}%>
+									<%})%>
+								<%} else {%>
+									<input type="text" class="form-control" id="email" placeholder="Enter userId" name="email">
+								<%}%>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="pwd">Password:</label>
+							<div class="col-sm-9">
+								<%if(fieldErrors) {%>
+									<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+									<%fieldErrors.forEach(function (error) { %>
+										<%if (error.param == 'pwd') {%>
+											<label class="errorMsg"><%- error.msg %></label><br/>
+										<%}%>
+									<%})%>
+								<%} else {%>
+									<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+								<%}%>
+							</div>
+						</div>
+						<%if (redirectUrl) {%>
+							<div class="form-group">
+								<input type="hidden" id="hiddenRedirectURL" name="redirectUrl" value="<%-redirectUrl%>">
+							</div>
+							<%}%>
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-9">
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</div>
+							</div>
+						</form>
+					</article>
+					<div class="col-md-1"></div>
+					<div class="col-md-4 well">
+						Available Users. User userId. Password is Password@123 for all users.<br/>
+						1. janedoe / Password@123<br/>
+						2. johndoe / Password@123<br/>
+						3. defaultuser / Password@123<br/>
+					</div>
+				</section>
+			</main>
+			
+			<footer>
+				<%- include('footer.ejs') %>
+			</footer>
+		</body>
+		</html>
+		

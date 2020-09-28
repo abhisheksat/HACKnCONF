@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8">
+		<title>Connection | HACK n CONF</title>
+		<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+		<script src="/assets/js/jquery-3.4.1.min.js"></script>
+		<script src="/assets/js/bootstrap.min.js"></script>
+		<script src="/assets/js/feature.js"></script>
+		<!--[if lt IE 9]
+			<script src="./js/browser-ie.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+		<header>
+				<%- include('header.ejs') %>
+		</header>
+		<%- include('navigation.ejs') %>
+
+		<main class="container col-md-7">
+				<section>
+						<br/><br/>
+						<div class="col-md-1"></div>
+						<article class="col-md-9 well">
+								<header>
+										<h2><%if (connection) {%><%- connection.connectionName%><%} else {%>Sample Connection Name<%}%></h2>
+								</header>
+								<br/>
+								<div class="col-md-4">
+										<%if (connection) {%>
+												<img src="<%-connection.photoUrl%>" class="img-responsive" alt="Host Avatar">
+										<%} else {%>
+												<img src="/assets/images/organizer.jpg" class="img-responsive" alt="Host Avatar">
+										<%}%>
+								</div>
+								<div class="col-md-8">
+										<p class="intro">Hosted by: <%if (connection) {%><%- connection.hostedby%><%} else {%>Sample Organization<%}%></p>
+										<p class="intro">Starts: <%if (connection) {%><%- connection.startDate%><%} else {%>Januray 01, 2020<%}%></p>
+										<p class="intro">Ends: <%if (connection) {%><%- connection.endDate%><%} else {%>Januray 01, 2020<%}%></p>
+										<div class="glyphicon glyphicon-map-marker"></div>: <%if (connection) {%><%- connection.location%><%} else {%>Staples Center, Uptown Charlotte, NC 29912<%}%>
+										<h4>Details:</h4>
+										<p><%if (connection) {%><%- connection.details%><%} else {%>Hackathon for All<%}%></p>
+								</div>
+						</article>
+				</section>
+		</main>
+
+		<aside class="container col-md-4">
+				<section>
+						<br/><br/>
+						<div class="col-md-12 well">
+								<h3>
+										140 People Have Already Enrolled
+								</h3>
+								<br/>
+								<h4>
+										Are You Going?
+								</h4>
+								<br/>
+								<div class="col-md-3"></div>
+								<div class="col-md-2">
+										<form id="rsvpyes" action="/rsvp" method="POST">
+												<input id="hiddenurlyes" type="hidden" name="browserUrl">
+												<input type="hidden" name="rsvpaction" value="RSVP">
+												<input type="hidden" name="rsvpvalue" value="Yes">
+												<input type="hidden" name="connId" value="<%-connection.connectionID%>">
+												<button onclick="submitRSVPYes()" class="btn btn-success">Yes</button>
+										</form>
+								</div>
+						<div class="col-md-2">
+								<form id="rsvpno" action="/rsvp" method="POST">
+										<input id="hiddenurlno" type="hidden" name="browserUrl">
+										<input type="hidden" name="rsvpaction" value="RSVP">
+										<input type="hidden" name="rsvpvalue" value="No">
+										<input type="hidden" name="connId" value="<%-connection.connectionID%>">
+										<button onclick="submitRSVPNo()" class="btn btn-danger">No</button>
+								</form>
+						</div>
+						<div class="col-md-2">
+								<form id="rsvpmaybe" action="/rsvp" method="POST">
+										<input id="hiddenurlmaybe" type="hidden" name="browserUrl">
+										<input type="hidden" name="rsvpaction" value="RSVP">
+										<input type="hidden" name="rsvpvalue" value="Maybe">
+										<input type="hidden" name="connId" value="<%-connection.connectionID%>">
+										<button onclick="submitRSVPMayBe()" class="btn btn-primary">Maybe</button>
+								</form>
+						</div>
+						<div class="col-md-3"></div>
+						</div>
+				</section>
+		</aside>
+
+		<footer>
+				<%- include('footer.ejs') %>
+		</footer>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8">
+		<title>Connections | HACK n CONF</title>
+		<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+		<script src="/assets/js/jquery-3.4.1.min.js"></script>
+		<script src="/assets/js/bootstrap.min.js"></script>
+		<!--[if lt IE 9]
+			<script src="./js/browser-ie.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+		<header>
+				<%- include('header.ejs') %>
+		</header>
+		<%- include('navigation.ejs') %>
+		<main id="main">
+				<section>
+		        <article>
+								<% connectionTopics.forEach(function(connectionTopic) {%>
+									<div class="col-md-1"></div>
+									<div class="col-md-5 flip-card img-responsive">
+											<div class="flip-card-inner">
+													<div class="flip-card-front well">
+															<header>
+																	<h1><%-connectionTopic%></h1>
+															</header>
+															<p class="intro">This is the topic description</p>
+															<p class="intro">Find all the upcoming events to the above topic here.</p>
+															<p class="intro">Host an event, participate or connect with like minded people.</p>
+															<p class="intro">Point your mouse to see upcoming Hackathons.</p>
+													</div>
+													<div class="flip-card-back well">
+															<header>
+																	<h1><%-connectionTopic%></h1>
+															</header>
+															<br/>
+															<ul>
+																	<% connections.forEach(function(connection) {%>
+																			<%if (connection.connectionTopic === connectionTopic) {%>
+																					<li><p><a href="connection/<%-connection.connectionID%>"><%-connection.connectionName%></a></p></li>
+																			<%}%>
+																	<% }); %>
+															</ul>
+													</div>
+											</div>
+									</div>
+								<%})%>
+		        </article>
+				</section>
+		</main>
+
+		<footer>
+				<%- include('footer.ejs') %>
+		</footer>
+</body>
+</html>

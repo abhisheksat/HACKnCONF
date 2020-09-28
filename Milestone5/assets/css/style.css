@@ -1,0 +1,172 @@
+/* This is the color of branding header */
+.branding {
+    border-radius: 0%;
+    background-color: #303F9F;
+}
+
+/* The color of navigation bar is different from branding header */
+.main-navigation {
+    border-radius: 0%;
+    background-color: #3F51B5;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #ffffff;
+}
+
+#topheader .navbar-nav li > a {
+    text-transform: capitalize;
+    color: #ffffff;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#topheader .navbar-nav li > a:hover, #topheader .navbar-nav li > a:focus {
+    background-color: #C5CAE9;
+    color: #212121;
+}
+
+#topheader .navbar-nav li.active > a {
+    background-color: #C5CAE9;
+    color: #212121;
+}
+
+#generalnav .navbar-nav li > a {
+    text-transform: capitalize;
+    color: #ffffff;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#generalnav .navbar-nav li > a:hover, #topheader .navbar-nav li > a:focus {
+    background-color: #C5CAE9;
+    color: #212121;
+}
+
+#generalnav .navbar-nav li.active > a {
+    background-color: #C5CAE9;
+    color: #212121;
+}
+
+#navfoot .navbar-nav li > a {
+    text-transform: capitalize;
+    color: #ffffff;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#navfoot .navbar-nav li > a:hover, #topheader .navbar-nav li > a:focus {
+    background-color: #C5CAE9;
+    color: #212121;
+}
+
+#navfoot .navbar-nav li.active > a {
+    background-color: #C5CAE9;
+    color: #212121;
+}
+
+#footernav {
+    text-transform: capitalize;
+    color: #ffffff;
+    transition: background-color 0.2s, color 0.2s;
+    text-align: left;
+    padding-left: 30px;
+}
+
+.navbar-inverse {
+    position: relative;
+    margin-bottom: .099%;
+}
+
+.navbar-brand {
+    padding-left: 30px;
+    display: flex;
+}
+
+.bg {
+    background-image: url("../images/poster.jpg");
+    height: 100px;
+    width: 100px;
+}
+
+html { 
+    background: url(../images/poster.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.well {
+    border-radius: 0px;
+    background-color: #C5CAE9;
+}
+
+.intro {
+    text-align: justify;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 400px;
+    height: 300px;
+    perspective: 1000px;
+    margin: 60px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.flip-card-front {
+    background-color: #C5CAE9;
+    color: black;
+}
+
+.flip-card-back {
+    background-color: #C5CAE9;
+    color: black;
+    transform: rotateY(180deg);
+}
+
+.btn {
+    border-radius: 0px;
+}
+
+.btn-info {
+    background-color: #448AFF;
+}
+
+.tabu {
+    background-color: #3F51B5;
+    color: white;   
+}
+
+.errorMsg {
+    color: #FF0000;
+}
+
+.error {
+    color: #FF0000;
+    font-weight: bold;
+}
